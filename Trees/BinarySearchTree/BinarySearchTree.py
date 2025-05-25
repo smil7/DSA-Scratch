@@ -107,6 +107,36 @@ class BinarySearchTree:
                             parent_node.right = left_most
             return True
 
+    def breadthFirstSearch(self):
+        currentNode = self.root
+        list = []
+        queue = []
+        queue.append(currentNode)
+
+        while len(queue) > 0:
+            currentNode = queue.pop(0)
+            print(currentNode.data)
+            list.append(currentNode.data)
+            if currentNode.left:
+                queue.append(currentNode.left)
+            if currentNode.right:
+                queue.append(currentNode.right)
+
+        return list
+
+    def breadthFirstSearchR(self, queue, list):
+        if len(queue) == 0:
+            return list
+        current_node = queue.pop(0)
+        list.append(current_node.data)
+        if current_node.left:
+            queue.append(current_node.left)
+        if current_node.right:
+            queue.append(current_node.right)
+
+        return self.breadthFirstSearchR(queue, list)
+
+
     # def traverse(self, node):
     #     tree = node
     #     if node.left is None:
@@ -131,5 +161,7 @@ tree_1.insert(20)
 tree_1.insert(170)
 tree_1.insert(15)
 tree_1.insert(1)
-print(vars(tree_1.lookup(170))) # This will return false if the variable returned is not an object
+print(tree_1.breadthFirstSearch())
+print(tree_1.breadthFirstSearchR([tree_1.root], []))
+#print(vars(tree_1.lookup(170))) # This will return false if the variable returned is not an object
 #print(vars(tree_1.traverse(tree_1.root)))
