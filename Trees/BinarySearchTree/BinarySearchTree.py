@@ -136,6 +136,15 @@ class BinarySearchTree:
 
         return self.breadthFirstSearchR(queue, list)
 
+    def DFSInOrder(self):
+        return traverseInOrder(self.root, [])
+
+    def DFSPostOrder(self):
+        return traversePostOrder(self.root, [])
+
+    def DFSPreOrder(self):
+        return traversePreOrder(self.root, [])
+
 
     # def traverse(self, node):
     #     tree = node
@@ -153,6 +162,36 @@ class BinarySearchTree:
     #
     #     return tree
 
+def traverseInOrder(node, list):
+    print(node.data)
+    if node.left:
+        traverseInOrder(node.left, list)
+    list.append(node.data)
+    if node.right:
+        traverseInOrder(node.right, list)
+
+    return list
+
+def traversePostOrder(node, list):
+    print(node.data)
+    if node.left:
+        traversePostOrder(node.left, list)
+    if node.right:
+        traversePostOrder(node.right, list)
+    list.append(node.data)
+
+    return list
+
+def traversePreOrder(node, list):
+    print(node.data)
+    list.append(node.data)
+    if node.left:
+        traversePreOrder(node.left, list)
+    if node.right:
+        traversePreOrder(node.right, list)
+
+    return list
+
 tree_1 = BinarySearchTree()
 tree_1.insert(9)
 tree_1.insert(4)
@@ -161,7 +200,8 @@ tree_1.insert(20)
 tree_1.insert(170)
 tree_1.insert(15)
 tree_1.insert(1)
-print(tree_1.breadthFirstSearch())
-print(tree_1.breadthFirstSearchR([tree_1.root], []))
+# print(tree_1.breadthFirstSearch())
+# print(tree_1.breadthFirstSearchR([tree_1.root], []))
+print(tree_1.DFSPostOrder())
 #print(vars(tree_1.lookup(170))) # This will return false if the variable returned is not an object
 #print(vars(tree_1.traverse(tree_1.root)))
